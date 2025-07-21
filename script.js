@@ -56,10 +56,6 @@ function spin() {
     }, 3000);
 }
 
-closePopupButton.addEventListener("click", () => {
-    popupContainer.classList.add("hidden");
-});
-
 function addOption() {
     const newOption = newOptionInput.value;
     if (newOption) {
@@ -106,6 +102,9 @@ function updateOptionsList() {
 
 spinButton.addEventListener("click", spin);
 addOptionButton.addEventListener("click", addOption);
+closePopupButton.addEventListener("click", () => {
+    popupContainer.classList.add("hidden");
+});
 
 drawWheel();
 updateOptionsList();
