@@ -13,14 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "Option 2", text: "Texte supplémentaire pour l'option 2" },
         { name: "Option 3", text: "Texte supplémentaire pour l'option 3" },
         { name: "Option 4", text: "Texte supplémentaire pour l'option 4" },
-        { name: "Option 5", text: "Texte supplémentaire pour l'option 5" },
-        { name: "Option 6", text: "Texte supplémentaire pour l'option 6" },
-        { name: "Option 7", text: "Texte supplémentaire pour l'option 7" },
-        { name: "Option 8", text: "Texte supplémentaire pour l'option 8" }
+        { name: "Option 5", text: "Texte supplémentaire pour l'option 5" }
     ];
     let colors = [
-        "#FFC300", "#FF5733", "#C70039", "#900C3F",
-        "#581845", "#DAF7A6", "#FFC300", "#FF5733"
+        "#FFC300", "#FF5733", "#C70039", "#900C3F", "#581845"
     ];
 
     let arc = Math.PI / (options.length / 2);
