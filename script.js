@@ -36,6 +36,10 @@ function drawWheel() {
     }
 }
 
+const popupContainer = document.getElementById("popup-container");
+const resultSpan = document.getElementById("result");
+const closePopupButton = document.getElementById("close-popup");
+
 function spin() {
     const spinAngle = Math.random() * 10 + 10; // Random spin angle
     wheel.style.transition = "transform 3s ease-out";
@@ -44,12 +48,17 @@ function spin() {
     setTimeout(() => {
         const degrees = spinAngle * 180 / Math.PI % 360;
         const index = Math.floor((360 - degrees) / (360 / options.length));
-        alert(`Vous avez gagné : ${options[index]}`);
+        resultSpan.textContent = options[index];
+        popupContainer.classList.remove("hidden");
         wheel.style.transition = "none";
         const actualAngle = spinAngle % (2 * Math.PI);
         wheel.style.transform = `rotate(${actualAngle}rad)`;
     }, 3000);
 }
+
+closePopupButton.addEventListener("click", () => {
+    popupContainer.classList.add("hidden");
+});
 
 function addOption() {
     const newOption = newOptionInput.value;
@@ -64,10 +73,34 @@ function addOption() {
 
 function updateOptionsList() {
     optionsList.innerHTML = "";
-    options.forEach(option => {
+    options.forEach((option, index) => {
         const div = document.createElement("div");
-        div.textContent = option;
+        div.innerHTML = `
+            <span class="option-text">${option}</span>
+            <button class="delete-button" data-index="${index}">Supprimer</button>
+        `;
         optionsList.appendChild(div);
+    });
+
+    document.querySelectorAll(".option-text").forEach((span, index) => {
+        span.addEventListener("click", (e) => {
+            const newText = prompt("Modifier l'option :", options[index]);
+            if (newText) {
+                options[index] = newText;
+                drawWheel();
+                updateOptionsList();
+            }
+        });
+    });
+
+    document.querySelectorAll(".delete-button").forEach(button => {
+        button.addEventListener("click", (e) => {
+            const index = e.target.getAttribute("data-index");
+            options.splice(index, 1);
+            arc = Math.PI / (options.length / 2);
+            drawWheel();
+            updateOptionsList();
+        });
     });
 }
 
