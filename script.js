@@ -5,11 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const optionsList = document.getElementById("options-list");
     const ctx = wheel.getContext("2d");
 
-    const popupContainer = document.getElementById("popup-container");
-    const resultNameSpan = document.getElementById("result-name");
-    const resultTextP = document.getElementById("result-text");
-    const closePopupButton = document.getElementById("close-popup");
-
     const newOptionNameInput = document.getElementById("new-option-name");
     const newOptionTextInput = document.getElementById("new-option-text");
 
@@ -58,11 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             const degrees = spinAngle * 180 / Math.PI % 360;
             const index = Math.floor((360 - degrees) / (360 / options.length));
-            resultNameSpan.textContent = options[index].name;
-            resultTextP.textContent = options[index].text;
-            if (popupContainer) {
-                popupContainer.classList.remove("hidden");
-            }
+            alert(`Vous avez gagné : ${options[index].name}\n\n${options[index].text}`);
             wheel.style.transition = "none";
             const actualAngle = spinAngle % (2 * Math.PI);
             wheel.style.transform = `rotate(${actualAngle}rad)`;
@@ -124,13 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (addOptionButton) {
         addOptionButton.addEventListener("click", addOption);
-    }
-    if (closePopupButton) {
-        closePopupButton.addEventListener("click", () => {
-            if (popupContainer) {
-                popupContainer.classList.add("hidden");
-            }
-        });
     }
 
     drawWheel();
