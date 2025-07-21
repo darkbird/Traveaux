@@ -17,19 +17,19 @@ let colors = [
 let arc = Math.PI / (options.length / 2);
 
 function drawWheel() {
-    ctx.clearRect(0, 0, 500, 500);
+    ctx.clearRect(0, 0, 400, 400);
     for (let i = 0; i < options.length; i++) {
         const angle = i * arc;
         ctx.beginPath();
         ctx.fillStyle = colors[i % colors.length];
-        ctx.moveTo(250, 250);
-        ctx.arc(250, 250, 250, angle, angle + arc);
-        ctx.lineTo(250, 250);
+        ctx.moveTo(200, 200);
+        ctx.arc(200, 200, 200, angle, angle + arc);
+        ctx.lineTo(200, 200);
         ctx.fill();
 
         ctx.save();
         ctx.fillStyle = "white";
-        ctx.translate(250 + Math.cos(angle + arc / 2) * 200, 250 + Math.sin(angle + arc / 2) * 200);
+        ctx.translate(200 + Math.cos(angle + arc / 2) * 150, 200 + Math.sin(angle + arc / 2) * 150);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
         ctx.fillText(options[i], -ctx.measureText(options[i]).width / 2, 0);
         ctx.restore();
