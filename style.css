@@ -73,9 +73,12 @@ body::after {
     margin-bottom: 10px;
 }
 
-#new-option {
+#new-option-name,
+#new-option-text {
     padding: 5px;
     margin-right: 10px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .delete-button {
@@ -105,6 +108,7 @@ body::after {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 #popup {
